@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<!--
+7. Выбрать видимый div с именем red, который содержит тег span.
+-->
+
+<body>
+<div class="one">нужен<span>span</span>></div>
+<div class="red" name="red">нужен<span>span1</span></div>
+<div class="11">не нужен</div>
+<div class="one" name="red" style="dysplay:visible">нужен<span>span2</span></div>
+<div class="one" name="red" style="dysplay:none">нужен<span>span3</span></div>
+<div class="11">не нужен</div>
+<p class="one"></p>
+<p class="two"></p>
+<p class="one"></p>
+<p class="two"></p>
+<p class="11"></p>
+<p class="two"></p>
+<p class="11"></p>
+<p class="two"></p>
+<button onclick="findSpan()">Жми</button>
+<script>
+    function findSpan() {
+        let elem = document.querySelectorAll('div[name="red"] span');
+        console.log(elem); //style="dysplay:visible"
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Игра "Угадайка"</title>
+    <script>
+        let answer = Math.trunc(Math.random()*100);
+        let game = true;
+        let count = 0;
+        let player = 1;
+
+        function playerChange (player){
+            if (player == 1){
+                player = 2;
+            } else {
+                player = 1;
+            }
+            return player;
+        }
+
+        while (game) {
+            let userAnswer = +prompt("Ход игрока номер " + player + "\nВведите число. \nЧтобы прервать игру введите 666.");
+            count++;
+
+            if (userAnswer == 666) {
+                game = false;
+                alert("Игра была прервана игроком номер " + player + ". \nНа попытке - " + count + ".");
+
+            } else if (answer == userAnswer) {
+                alert("Поздравляем игрок номер " + player + " Вы угадали! \nЧисло попыток - " + count + ".");
+                game = false;
+
+            }  else if (answer < userAnswer) {
+                alert("Игрок номер " + player +" Вы не угадали. \nЗагаданное число меньше. \nПререход хода");
+                player = playerChange(player);
+
+            } else if (answer > userAnswer) {
+                alert("Игрок номер " + player + " Вы не угадали. \nЗагаданное число больше. \nПререход хода");
+                player = playerChange(player);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

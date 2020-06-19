@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function multiplier(x) {
+        return function (y) {
+            return x * y;
+        }
+    }
+
+    let multiplier2 = multiplier(2);
+    let multiplier5 = multiplier(5);
+
+    console.log(multiplier2(10));
+    console.log(multiplier5(10));
+
+    function say(string) {
+        return function (name) {
+            return string + " " + name;
+        }
+    }
+    let sayHi = say("Привет");
+    let sayChao = say("Пока");
+
+    console.log(sayHi("Чувак"));
+    console.log(sayChao("Братан"));
+</script>
+</body>
+</html>

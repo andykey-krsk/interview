@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<!--
+6. Найти все элементы div с классом one, а также все элементы p с классом two.
+Затем добавить им всем класс three и визуально плавно спустить вниз.
+$(“div.one”).add(“p.two”).addClass(“three”).slideDown(“slow”);
+-->
+
+<body>
+<div class="one">нужен</div>
+<div class="one">нужен</div>
+<div class="11">не нужен</div>
+<div class="one">нужен</div>
+<div class="11">не нужен</div>
+<p class="one"></p>
+<p class="two"></p>
+<p class="one"></p>
+<p class="two"></p>
+<p class="11"></p>
+<p class="two"></p>
+<p class="11"></p>
+<p class="two"></p>
+<button onclick="findAndAddClass('div.one','three'); findAndAddClass('p.two','three')">Жми</button>
+<script>
+    function findAndAddClass(selector, className) {
+        let elems = document.querySelectorAll(selector);
+        elems.forEach(item => item.classList.add(className));
+    }
+</script>
+</body>
+</html>
