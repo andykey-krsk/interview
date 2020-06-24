@@ -5,45 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Игра "Угадайка"</title>
-    <script>
-        let answer = Math.trunc(Math.random()*100);
-        let game = true;
-        let count = 0;
-        let player = 1;
-
-        function playerChange (player){
-            if (player == 1){
-                player = 2;
-            } else {
-                player = 1;
-            }
-            return player;
+    <style>
+        .container {
+            width: 340px;
+            height: 190px;
+            background: lightgray;
+            margin: auto;
+            padding: 20px;
         }
 
-        while (game) {
-            let userAnswer = +prompt("Ход игрока номер " + player + "\nВведите число. \nЧтобы прервать игру введите 666.");
-            count++;
-
-            if (userAnswer == 666) {
-                game = false;
-                alert("Игра была прервана игроком номер " + player + ". \nНа попытке - " + count + ".");
-
-            } else if (answer == userAnswer) {
-                alert("Поздравляем игрок номер " + player + " Вы угадали! \nЧисло попыток - " + count + ".");
-                game = false;
-
-            }  else if (answer < userAnswer) {
-                alert("Игрок номер " + player +" Вы не угадали. \nЗагаданное число меньше. \nПререход хода");
-                player = playerChange(player);
-
-            } else if (answer > userAnswer) {
-                alert("Игрок номер " + player + " Вы не угадали. \nЗагаданное число больше. \nПререход хода");
-                player = playerChange(player);
-            }
+        .box {
+            display: flex;
+            justify-content: space-between;
         }
-    </script>
+
+        .margin-bottom {
+            margin-bottom: 10px;
+        }
+
+        .button {
+            width: 49%;
+            height: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: dimgrey;
+        }
+
+        input {
+            width: 70%;
+        }
+
+        #btnOk {
+            width: 25%;
+        }
+    </style>
 </head>
 <body>
 
+<div class="container">
+    <h1>Игра "Угадайка"</h1>
+    <div class="box margin-bottom">
+        <button class="button" id="btnNew">Начать игру</button>
+        <button class="button" id="btnEnd">Завершить игру</button>
+    </div>
+
+    Введите число:
+    <div class="box">
+        <input type="number" id="answer">
+        <button class="button" id="btnOk">Ок</button>
+    </div>
+    <p id="message">Игра пока не началась</p>
+</div>
+
+<script>
+    let secret = Math.trunc(Math.random() * 100);
+    let game = false;
+    let count = 0;
+
+    const btnOk = document.getElementById('btnOk');
+    const btnNew = document.getElementById('btnNew');
+    const btnEnd = document.getElementById('btnEnd');
+    const answer = document.getElementById('answer');
+    const message = document.getElementById('message');
+
+    btnNew.addEventListener('click', function () {
+        if (!game) {
+            game = true;
+            count = 0;
+            secret = Math.trunc(Math.random() * 100);
+            message.innerText = "Игра началась.";
+        }
+    });
+
+    btnEnd.addEventListener('click', function () {
+        if (game) {
+            game = false;
+            message.innerText = "Игра отменена. \nЗагаданное число - " + secret + ". Колличество попыток - " + count;
+
+        }
+    });
+
+    btnOk.addEventListener('click', function () {
+        let userAnswer = +answer.valueAsNumber;
+        count++;
+        if (game) {
+            if (userAnswer == secret) {
+                message.innerText = "Поздравляем Вы угадали! \nЧисло попыток - " + count + ".";
+            } else if (userAnswer > secret) {
+                message.innerText = "Вы не угадали. \nЗагаданное число меньше.";
+            } else if (userAnswer < secret) {
+                message.innerText = "Вы не угадали. \nЗагаданное число больше.";
+            }
+        }
+    });
+</script>
 </body>
 </html>
