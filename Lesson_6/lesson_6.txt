@@ -1,0 +1,67 @@
+1. Как создать новую ветку в GIT?
+git branch newbranch - создаем новую ветку
+git checkout newbranch - переходим в нее
+git checkout -b newbranch - сокращенная версия этих двух команд
+git status - проверяем где мы находимся
+
+
+2. Какие еще прикладные программы могут обеспечивать работу сайта?
+Для обработки HTTP запросов
+Nginx, Apache
+Для создания динамического контента
+PHP-FPM, 
+для работы с база ми данных
+MySQL, MariaDB, MongoDB, PostgreSQL
+Система контейнеризации
+Docker, Docker Compose
+Разные CMS
+WordPress, Joomla, Drupal
+
+3. Какие текстовые редакторы есть в Linux-подобных системах?
+Для консоли: 
+По умолчанию изпользуется vi. Улучшенная версия vim. Nano
+Для графического интерфейса:
+Atom, Brackits, Bluefish.
+
+
+4. Что означают показатели в выводе команды top?
+Эта команда выводит список запущенных процессов в порядке убывания нагрузки, приходящейся на процессор.
+
+
+5. Как перезапустить nginx?
+systemctl restart nginx
+Если нужно только перечитать конфигурационные файлы:
+systemctl reload nginx
+Можно еще остановить сервис 
+systemctl stop nginx
+а потом его запустить
+systemctl start nginx
+
+
+6. Как сделать дамп mysql БД?
+Делаем бекап
+mysqldump -u USER -p PASSWORD DATABASE > /path/to/file/dump.sql
+Создаём структуру базы без данных
+mysqldump --no-data -u USER -p PASSWORD DATABASE > /path/to/file/schema.sql
+
+
+7. Как скопировать файл в Linux-подобных системах?
+cp file.txt /path/file.txt
+
+
+8. Как посмотреть занятые сетевые порты в Linux-подобных системах?
+Утилитами ss или netstat опции у них одинаковые
+sudo ss -tulpn
+sudo netstat -tulpn
+
+
+9. Что означают права 0644?
+644 = rw- r-– r–-
+Owner	чтение и редактирование
+Group	только чтение
+Others	только чтение
+
+
+10. Как PHP-файл сделать демоном?
+Cоздать бесконечный цикл в php файле, вся логика должна быть внутри этого цикла. Запустить его через консодь.
+php -f /path/to/your/daemon.php &
